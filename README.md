@@ -6,7 +6,7 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
 
 ### Estructura
 
-![App Screenshot](https://i.ibb.co/XbqCXzP/structure.jpg)
+![App Screenshot](https://raw.githubusercontent.com/angeldavidhf/angeldavidhf/main/projects/blob/structure.jpg)
 
 La estructura de carpetas contiene inicialmente en la carpeta raíz
 
