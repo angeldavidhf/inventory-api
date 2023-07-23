@@ -55,7 +55,7 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
       npm run dev
     ```
 
-   :partying_face: :clap: Listo con esto podemos ver nuestra API en [Apollo Sandbox](https://studio.apollographql.com/sandbox) y la URL seria `localhost:4000/graphql`
+   :partying_face: :clap: Listo con esto podemos ver nuestra API en [Apollo Sandbox](https://studio.apollographql.com/sandbox) y la URL seria `http://localhost:4000/graphql`
 
 ## Tecnologías
 - sequelize
