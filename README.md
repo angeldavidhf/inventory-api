@@ -8,8 +8,6 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
 
 ![App Screenshot](https://raw.githubusercontent.com/angeldavidhf/angeldavidhf/main/projects/blob/structure.jpg)
 
-La estructura de carpetas contiene inicialmente en la carpeta raíz
-
 - **database**: contiene las migrations, seeders y config
     - **migrations**: contiene todo lo relacionado con la estructura de las tablas en la base de datos
     - **seeders**: crea data de prueba para las tablas, se debe ejecutar primero las migraciones
