@@ -1,7 +1,16 @@
 const { gql } = require('graphql-tag');
 
 const typeDefs = gql`
-    type Tools {
+    type Task {
+        id: ID!
+        description: String!
+        responsable: String!
+        status: String
+        createdAt: String!
+        updatedAt: String!
+    }
+
+    type Tool {
         id: ID!
         name: String!
         value: Float!
@@ -11,14 +20,21 @@ const typeDefs = gql`
     }
 
     type Query {
-        tools: [Tools!]!
-        tool(id: ID!): Tools
+        tools: [Tool!]!
+        tool(id: ID!): Tool
+
+        tasks: [Task!]!
+        task(id: ID!): Task
     }
 
     type Mutation {
-        createTool(name: String!, value: Float!, status: Boolean!): Tools!
-        updateTool(id: ID!, name: String!, value: Float!, status: Boolean!): Tools!
+        createTool(name: String!, value: Float!, status: Boolean!): Tool!
+        updateTool(id: ID!, name: String!, value: Float!, status: Boolean!): Tool!
         deleteTool(id: ID!): ID!
+
+        createTask(description: String!, responsable: String!, status: String): Task!
+        updateTask(id: ID!, description: String!, responsable: String!, status: String): Task!
+        deleteTask(id: ID!): ID!
     }
 `;
 

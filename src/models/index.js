@@ -12,9 +12,13 @@ const sequelize = new Sequelize(
 )
 
 const ToolModel = require('./toolModel');
-const Tool = ToolModel(sequelize);
+const Tools = ToolModel(sequelize);
+
+const TaskModel = require('./taskModel');
+const Tasks = TaskModel(sequelize);
 
 module.exports = {
     sequelize,
-    Tool,
+    Tools,
+    Tasks
 };

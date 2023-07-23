@@ -58,7 +58,7 @@ async function deleteTool(req, res) {
             return res.status(404).json({ error: 'Herramienta no encontrada' });
         }
         await tool.destroy();
-        return res.status(204).json(); // Respuesta exitosa sin contenido
+        return res.status(204).json();
     } catch (error) {
         return res.status(500).json({ error: 'Error al eliminar la herramienta' });
     }

@@ -10,4 +10,13 @@ router.put('/tools/:id', toolsController.updateTool);
 router.delete('/tools/:id', toolsController.deleteTool);
 
 
+const tasksController = require('../controllers/tasksController');
+
+router.post('/tasks', tasksController.createTask);
+router.get('/tasks', tasksController.getTasks);
+router.get('/tasks/:id', tasksController.getTaskById);
+router.put('/tasks/:id', tasksController.updateTask);
+router.delete('/tasks/:id', tasksController.deleteTask);
+
+
 module.exports = router;
