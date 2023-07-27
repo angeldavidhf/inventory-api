@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const toolTypes = gql`
     type Tool {
         id: ID!
-        userId: ID!
+        userId: ID
         name: String!
         value: Float!
         status: Boolean!
@@ -12,16 +12,8 @@ const toolTypes = gql`
         updatedAt: String!
     }
 
-    input CreateToolInput {
-        userId: ID!
-        name: String!
-        value: Float!
-        status: Boolean!
-    }
-
-    input UpdateToolInput {
-        id: ID!
-        userId: ID!
+    input ToolInput {
+        userId: ID
         name: String!
         value: Float!
         status: Boolean!
@@ -33,8 +25,8 @@ const toolTypes = gql`
     }
 
     type Mutation {
-        createTool(input: CreateToolInput!): Tool!
-        updateTool(input: UpdateToolInput!): Tool!
+        createTool(input: ToolInput!): Tool!
+        updateTool(id: ID!, input: ToolInput!): Tool!
         deleteTool(id: ID!): ID!
     }
 `;

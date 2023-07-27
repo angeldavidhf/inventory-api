@@ -34,8 +34,7 @@ const companyResolvers = {
                 if (!company) {
                     throw new Error('Company not found');
                 }
-                await CompaniesController.updateCompany(id, input);
-                return company;
+                return await CompaniesController.updateCompany(id, input);
             } catch (error) {
                 throw new Error('Error updating company: ' + error.message);
             }
@@ -46,8 +45,7 @@ const companyResolvers = {
                 if (!company) {
                     throw new Error('Company not found');
                 }
-                await CompaniesController.deleteCompany(id);
-                return true;
+                return await CompaniesController.deleteCompany(id);
             } catch (error) {
                 throw new Error('Error deleting company: ' + error.message);
             }

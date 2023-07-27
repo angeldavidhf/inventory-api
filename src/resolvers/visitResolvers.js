@@ -1,5 +1,4 @@
 const VisitsController = require('../controllers/VisitsController');
-const RolesController = require("../controllers/RolesController");
 
 const visitResolvers = {
     Query: {
@@ -35,8 +34,7 @@ const visitResolvers = {
                 if (!visit) {
                     throw new Error('Visit not found');
                 }
-                await VisitsController.updateVisit(id, input);
-                return visit;
+                return await VisitsController.updateVisit(id, input);
             } catch (error) {
                 throw new Error('Error updating visit: ' + error.message);
             }
@@ -47,8 +45,7 @@ const visitResolvers = {
                 if (!visit) {
                     throw new Error('Visit not found');
                 }
-                await VisitsController.deleteVisit(id);
-                return true;
+                return await VisitsController.deleteVisit(id);
             } catch (error) {
                 throw new Error('Error deleting visit: ' + error.message);
             }

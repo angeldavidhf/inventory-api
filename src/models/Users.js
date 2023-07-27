@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database/connection');
 
+const RolesModel = require('./Roles');
+
 const UsersModel = sequelize.define('users', {
     id: {
         type: DataTypes.INTEGER,
@@ -35,5 +37,24 @@ const UsersModel = sequelize.define('users', {
         defaultValue: sequelize.literal('NOW()'),
     },
 });
+
+UsersModel.belongsTo(RolesModel, {
+    foreignKey: 'roleId',
+    as: 'role',
+});
+
+UsersModel.associate = ({ ToolsModel, VisitsModel }) => {
+    UsersModel.hasMany(ToolsModel, {
+        foreignKey: 'userId',
+        as: 'tools',
+    });
+    UsersModel.hasMany(VisitsModel, {
+        foreignKey: 'userId',
+        as: 'visits'
+    });
+};
+
+
+
 
 module.exports = UsersModel;

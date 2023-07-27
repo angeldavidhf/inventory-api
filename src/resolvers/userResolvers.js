@@ -35,8 +35,7 @@ const userResolvers = {
                 if (!user) {
                     throw new Error('User not found');
                 }
-                await UsersController.updateUser(id, input);
-                return user;
+                return await UsersController.updateUser(id, input);
             } catch (error) {
                 throw new Error('Error updating user: ' + error.message);
             }
@@ -47,8 +46,7 @@ const userResolvers = {
                 if (!user) {
                     throw new Error('User not found');
                 }
-                await UsersController.deleteUser(id);
-                return true;
+                return await UsersController.deleteUser(id);
             } catch (error) {
                 throw new Error('Error deleting user: ' + error.message);
             }

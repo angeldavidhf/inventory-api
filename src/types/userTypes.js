@@ -6,18 +6,13 @@ const userTypes = gql`
         name: String!
         branch_office: String!
         role: Role!
+        tools: [Tool]!
+        visits: [Visit]!
         createdAt: String!
         updatedAt: String!
     }
 
-    input CreateUserInput {
-        name: String!
-        branch_office: String!
-        roleId: ID!
-    }
-
-    input UpdateUserInput {
-        id: ID!
+    input UserInput {
         name: String!
         branch_office: String!
         roleId: ID!
@@ -29,8 +24,8 @@ const userTypes = gql`
     }
 
     type Mutation {
-        createUser(input: CreateUserInput!): User!
-        updateUser(input: UpdateUserInput!): User!
+        createUser(input: UserInput!): User!
+        updateUser(id: ID!, input: UserInput!): User!
         deleteUser(id: ID!): ID!
     }
 `;

@@ -9,12 +9,7 @@ const roleTypes = gql`
         updatedAt: String!
     }
 
-    input CreateRoleInput {
-        name: String!
-    }
-
-    input UpdateRoleInput {
-        id: ID!
+    input RoleInput {
         name: String!
     }
 
@@ -24,8 +19,8 @@ const roleTypes = gql`
     }
 
     type Mutation {
-        createRole(input: CreateRoleInput!): Role!
-        updateRole(input: UpdateRoleInput!): Role!
+        createRole(input: RoleInput!): Role!
+        updateRole(id: ID!, input: RoleInput!): Role!
         deleteRole(id: ID!): ID!
     }
 `;

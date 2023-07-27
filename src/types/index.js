@@ -8,10 +8,9 @@ const userTypes = require('./userTypes');
 const visitTypes = require('./visitTypes');
 
 module.exports = gql`
-    ${rootTypes}
+    ${companyTypes}
     ${roleTypes}
+    ${toolTypes}
     ${userTypes}
     ${visitTypes}
-    ${companyTypes}
-    ${toolTypes}
 `;

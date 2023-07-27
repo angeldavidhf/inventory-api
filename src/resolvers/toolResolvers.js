@@ -34,8 +34,7 @@ const toolResolvers = {
                 if (!tool) {
                     throw new Error('Tool not found');
                 }
-                await ToolsController.updateTool(id, input);
-                return tool;
+                return await ToolsController.updateTool(id, input);
             } catch (error) {
                 throw new Error('Error updating tool: ' + error.message);
             }
@@ -46,8 +45,7 @@ const toolResolvers = {
                 if (!tool) {
                     throw new Error('Tool not found');
                 }
-                await ToolsController.deleteTool(id);
-                return true;
+                return await ToolsController.deleteTool(id);
             } catch (error) {
                 throw new Error('Error deleting tool: ' + error.message);
             }

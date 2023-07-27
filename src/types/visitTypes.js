@@ -6,20 +6,13 @@ const visitTypes = gql`
         userId: ID!
         companyId: ID!
         dateVisit: String!
-        company: Company!
-        user: User!
+        company: Company
+        user: User
         createdAt: String!
         updatedAt: String!
     }
 
-    input CreateVisitInput {
-        userId: ID!
-        companyId: ID!
-        dateVisit: String!
-    }
-
-    input UpdateVisitInput {
-        id: ID!
+    input VisitInput {
         userId: ID!
         companyId: ID!
         dateVisit: String!
@@ -31,8 +24,8 @@ const visitTypes = gql`
     }
 
     type Mutation {
-        createVisit(input: CreateVisitInput!): Visit!
-        updateVisit(input: UpdateVisitInput!): Visit!
+        createVisit(input: VisitInput!): Visit!
+        updateVisit(id: ID!, input: VisitInput!): Visit!
         deleteVisit(id: ID!): ID!
     }
 `;

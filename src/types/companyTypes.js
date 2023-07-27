@@ -10,13 +10,7 @@ const companyTypes = gql`
         updatedAt: String!
     }
 
-    input CreateCompanyInput {
-        name: String!
-        address: String!
-    }
-
-    input UpdateCompanyInput {
-        id: ID!
+    input CompanyInput {
         name: String!
         address: String!
     }
@@ -27,8 +21,8 @@ const companyTypes = gql`
     }
 
     type Mutation {
-        createCompany(input: CreateCompanyInput!): Company!
-        updateCompany(input: UpdateCompanyInput!): Company!
+        createCompany(input: CompanyInput!): Company!
+        updateCompany(id: ID!, input: CompanyInput!): Company!
         deleteCompany(id: ID!): ID!
     }
 `;

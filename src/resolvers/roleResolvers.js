@@ -34,8 +34,7 @@ const roleResolvers = {
                 if (!role) {
                     throw new Error('Role not found');
                 }
-                await RolesController.updateRole(id, input);
-                return role;
+                return await RolesController.updateRole(id, input);
             } catch (error) {
                 throw new Error('Error updating role: ' + error.message);
             }
@@ -46,8 +45,7 @@ const roleResolvers = {
                 if (!role) {
                     throw new Error('Role not found');
                 }
-                await RolesController.deleteRole(id);
-                return true;
+                return await RolesController.deleteRole(id);
             } catch (error) {
                 throw new Error('Error deleting role: ' + error.message);
             }

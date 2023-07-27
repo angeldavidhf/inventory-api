@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database/connection');
+const UsersModel = require("./Users");
 
 const ToolsModel = sequelize.define('tools', {
     id: {
@@ -39,5 +40,11 @@ const ToolsModel = sequelize.define('tools', {
         defaultValue: sequelize.literal('NOW()'),
     },
 });
+
+ToolsModel.belongsTo(UsersModel, {
+    foreignKey: 'userId',
+    as: 'user',
+});
+
 
 module.exports = ToolsModel;

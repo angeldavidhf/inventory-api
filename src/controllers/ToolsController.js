@@ -5,7 +5,7 @@ async function createTool(data) {
         const newTool = await ToolsModel.create(data);
         return newTool;
     } catch (error) {
-        throw new Error('Error al crear la herramienta');
+        throw new Error(`Error al crear la herramienta: ${error}`);
     }
 }
 
@@ -14,12 +14,17 @@ async function getTools() {
         const tools = await ToolsModel.findAll({
             include: {
                 model: UsersModel,
-                as: 'users'
+                as: 'user'
             }
         });
+
+        tools.forEach((tool) => {
+            tool.user = tool.user || {};
+        });
+
         return tools;
     } catch (error) {
-        throw new Error('Error al obtener las herramientas');
+        throw new Error(`Error al obtener las herramientas: ${error}`);
     }
 }
 
@@ -28,28 +33,33 @@ async function getToolById(id) {
         const tool = await ToolsModel.findByPk(id, {
             include: {
                 model: UsersModel,
-                as: 'users'
+                as: 'user'
             }
         });
+
         if (!tool) {
             throw new Error('Herramienta no encontrada');
         }
+
+        tool.user = tool.user || {};
         return tool;
     } catch (error) {
-        throw new Error('Error al obtener la herramienta');
+        throw new Error(`Error al obtener la herramienta: ${error}`);
     }
 }
 
 async function updateTool(id, data) {
     try {
-        const tool = await ToolsModel.findByPk(id);
-        if (!tool) {
-            throw new Error('Rol no encontrado');
+        const [rowsUpdated, [updatedTool]] = await ToolsModel.update(data, {
+            where: { id },
+            returning: true
+        });
+        if (rowsUpdated === 0) {
+            throw new Error('Herramienta no encontrada');
         }
-        await tool.update(data);
-        return tool;
+        return updatedTool;
     } catch (error) {
-        throw new Error('Error al actualizar la herramienta');
+        throw new Error(`Error al actualizar la herramienta: ${error}`);
     }
 }
 
@@ -67,7 +77,7 @@ async function deleteTool(id) {
 
         return id;
     } catch (error) {
-        throw new Error('Error al eliminar la herramienta');
+        throw new Error(`Error al eliminar la herramienta: ${error}`);
     }
 }
 

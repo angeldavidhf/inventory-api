@@ -28,4 +28,11 @@ const CompaniesModel = sequelize.define('companies', {
     },
 });
 
+CompaniesModel.associate = ({ VisitsModel }) => {
+    CompaniesModel.hasMany(VisitsModel, {
+        foreignKey: 'companyId',
+        as: 'visits'
+    });
+};
+
 module.exports = CompaniesModel;

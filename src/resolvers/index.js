@@ -1,7 +1,7 @@
 const companyResolvers = require('./companyResolvers');
 const roleResolvers = require('./roleResolvers');
 const toolResolvers = require('./toolResolvers');
-const userResolver = require('./userResolver');
+const userResolvers = require('./userResolvers');
 const visitResolvers = require('./visitResolvers');
 
 const resolvers = {
@@ -9,14 +9,14 @@ const resolvers = {
         ...companyResolvers.Query,
         ...roleResolvers.Query,
         ...toolResolvers.Query,
-        ...userResolver.Query,
+        ...userResolvers.Query,
         ...visitResolvers.Query
     },
     Mutation: {
         ...companyResolvers.Mutation,
         ...roleResolvers.Mutation,
         ...toolResolvers.Mutation,
-        ...userResolver.Mutation,
+        ...userResolvers.Mutation,
         ...visitResolvers.Mutation
     },
 };

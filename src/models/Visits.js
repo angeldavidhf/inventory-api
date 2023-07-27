@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../database/connection');
+const UsersModel = require("./Users");
+const CompaniesModel = require("./Companies");
 
 const VisitsModel = sequelize.define('visits', {
     id: {
@@ -38,6 +40,16 @@ const VisitsModel = sequelize.define('visits', {
         allowNull: false,
         defaultValue: sequelize.literal('NOW()'),
     },
+});
+
+VisitsModel.belongsTo(UsersModel, {
+    foreignKey: 'userId',
+    as: 'user',
+});
+
+VisitsModel.belongsTo(CompaniesModel, {
+    foreignKey: 'companyId',
+    as: 'company',
 });
 
 module.exports = VisitsModel;

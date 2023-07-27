@@ -17,6 +17,11 @@ async function getRoles() {
                 as: 'users'
             }
         });
+
+        roles.forEach((role) => {
+            role.users = role.users || [];
+        });
+
         return roles;
     } catch (error) {
         throw new Error(`Error al obtener los roles: ${error}`);
@@ -31,9 +36,13 @@ async function getRoleById(id) {
                 as: 'users'
             }
         });
+
         if (!role) {
             throw new Error('Rol no encontrado');
         }
+
+        role.users = role.users || [];
+
         return role;
     } catch (error) {
         throw new Error(`Error al obtener el rol por ID: ${error}`);
@@ -42,12 +51,14 @@ async function getRoleById(id) {
 
 async function updateRole(id, data) {
     try {
-        const role = await RolesModel.findByPk(id);
-        if (!role) {
+        const [rowsUpdated, [updatedRole]] = await RolesModel.update(data, {
+            where: { id },
+            returning: true
+        });
+        if (rowsUpdated === 0) {
             throw new Error('Rol no encontrado');
         }
-        await role.update(data);
-        return role;
+        return updatedRole;
     } catch (error) {
         throw new Error(`Error al actualizar el rol: ${error}`);
     }

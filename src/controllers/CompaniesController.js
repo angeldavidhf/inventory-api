@@ -5,7 +5,7 @@ async function createCompany(data) {
         const newCompany = await CompaniesModel.create(data);
         return newCompany;
     } catch (error) {
-        throw new Error('Error al crear la compañía');
+        throw new Error(`Error al crear la compañía: ${error}`);
     }
 }
 
@@ -17,9 +17,14 @@ async function getCompanies() {
                 as: 'visits'
             }
         });
+
+        companies.forEach((company) => {
+            company.visits = company.visits || [];
+        });
+
         return companies;
     } catch (error) {
-        throw new Error('Error al obtener las compañías');
+        throw new Error(`Error al obtener las compañías: ${error}`);
     }
 }
 
@@ -31,25 +36,31 @@ async function getCompanyById(id) {
                 as: 'visits'
             }
         });
+
         if (!company) {
             throw new Error('Compañía no encontrada');
         }
+
+        company.visits = company.visits || [];
+
         return company;
     } catch (error) {
-        throw new Error('Error al obtener la compañía por ID');
+        throw new Error(`Error al obtener la compañía por ID: ${error}`);
     }
 }
 
 async function updateCompany(id, data) {
     try {
-        const company = await CompaniesModel.findByPk(id);
-        if (!company) {
-            throw new Error('Compañía no encontrada');
+        const [rowsUpdated, [updatedCompany]] = await CompaniesModel.update(data, {
+            where: { id },
+            returning: true
+        });
+        if (rowsUpdated === 0) {
+            throw new Error('Empresa no encontrada');
         }
-        await company.update(data);
-        return company;
+        return updatedCompany;
     } catch (error) {
-        throw new Error('Error al actualizar la compañía');
+        throw new Error(`Error al actualizar la compañía: ${error}`);
     }
 }
 
@@ -67,7 +78,7 @@ async function deleteCompany(id) {
 
         return id;
     } catch (error) {
-        throw new Error('Error al eliminar la compañía');
+        throw new Error(`Error al eliminar la compañía: ${error}`);
     }
 }
 
