@@ -1,24 +1,7 @@
-const { Sequelize } = require('sequelize');
-const dbConfig = require('../../database/config.json');
+const CompaniesModel = require('./Companies');
+const RolesModel = require('./Roles');
+const ToolsModel = require('./Tools');
+const UsersModel = require('./Users');
+const VisitsModel = require('./Visits');
 
-const sequelize = new Sequelize(
-    dbConfig.development.database,
-    dbConfig.development.username,
-    dbConfig.development.password,
-    {
-        host: dbConfig.development.host,
-        dialect: dbConfig.development.dialect,
-    }
-)
-
-const ToolModel = require('./toolModel');
-const Tools = ToolModel(sequelize);
-
-const TaskModel = require('./taskModel');
-const Tasks = TaskModel(sequelize);
-
-module.exports = {
-    sequelize,
-    Tools,
-    Tasks
-};
+module.exports = { CompaniesModel, RolesModel, ToolsModel, UsersModel, VisitsModel };

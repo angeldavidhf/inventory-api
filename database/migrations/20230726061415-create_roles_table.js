@@ -3,24 +3,16 @@ const { DataTypes } = require('sequelize');
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('tasks', {
+        await queryInterface.createTable('roles', {
             id: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false,
             },
-            description: {
+            name: {
                 type: DataTypes.STRING,
                 allowNull: false,
-            },
-            responsable: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            status: {
-                type: DataTypes.ENUM('Creada', 'Iniciada', 'Finalizada'),
-                defaultValue: 'Iniciada',
             },
             createdAt: {
                 type: DataTypes.DATE,
@@ -36,6 +28,6 @@ module.exports = {
     },
 
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('tasks');
+        await queryInterface.dropTable('roles');
     }
 };

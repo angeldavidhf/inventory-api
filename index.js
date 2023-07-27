@@ -1,24 +1,37 @@
 const express = require('express');
-const { sequelize } = require('./src/models');
-const server = require('./src/graphql/server');
+const { ApolloServer } = require('apollo-server-express');
+const sequelize = require('./database/connection');
+const typeDefs = require('./src/types');
+const resolvers = require('./src/resolvers');
 
-const app = express();
+async function startServer() {
+    const app = express();
 
-(async () => {
-    try {
-        // Conectarse a la base de datos antes de iniciar el servidor de Apollo
-        await sequelize.authenticate();
-        console.log('Conexión a la base de datos establecida.');
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+    });
 
-        // Iniciar el servidor de Apollo GraphQL
-        await server.start();
-        server.applyMiddleware({ app });
+    await server.start();
 
-        // Iniciar el servidor de Express
-        app.listen({ port: 4000 }, () => {
-            console.log(`Servidor en http://localhost:4000${server.graphqlPath}`);
+    server.applyMiddleware({ app });
+
+    sequelize
+        .sync()
+        .then(() => {
+            console.log('Base de datos conectada.');
+        })
+        .catch((err) => {
+            console.error('Error al conectar a la base de datos:', err);
         });
-    } catch (error) {
-        console.error('Error al iniciar el servidor:', error);
-    }
-})();
+
+    const PORT = process.env.PORT || 4000;
+
+    app.listen(PORT, () => {
+        console.log(`Servidor iniciado en http://localhost:${PORT}${server.graphqlPath}`);
+    });
+}
+
+startServer().catch(error => {
+    console.error('Error iniciando el servidor:', error);
+});
