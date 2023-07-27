@@ -88,6 +88,11 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
       roles {
         id
         name
+        users {
+          id
+          name
+          branch_office
+        }
       }
     }
     ```
@@ -98,6 +103,11 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
       role(id: 1) {
         id
         name
+        users {
+          id
+          name
+          branch_office
+        }
       }
     }
     ```
@@ -206,7 +216,7 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
 
 ### Herramientas
 
-1. Crear una nueva herramienta:
+1. Crear una nueva herramienta (el **userId** no es obligatorio):
     ```graphql
     mutation {
       createTool(input: { userId: 1, name: "Hammer", value: 15.99, status: true }) {
