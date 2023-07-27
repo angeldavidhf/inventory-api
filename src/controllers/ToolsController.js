@@ -18,10 +18,6 @@ async function getTools() {
             }
         });
 
-        tools.forEach((tool) => {
-            tool.user = tool.user || {};
-        });
-
         return tools;
     } catch (error) {
         throw new Error(`Error al obtener las herramientas: ${error}`);
@@ -41,7 +37,6 @@ async function getToolById(id) {
             throw new Error('Herramienta no encontrada');
         }
 
-        tool.user = tool.user || {};
         return tool;
     } catch (error) {
         throw new Error(`Error al obtener la herramienta: ${error}`);

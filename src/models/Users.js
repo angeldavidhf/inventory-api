@@ -54,7 +54,4 @@ UsersModel.associate = ({ ToolsModel, VisitsModel }) => {
     });
 };
 
-
-
-
 module.exports = UsersModel;

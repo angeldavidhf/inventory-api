@@ -14,7 +14,10 @@ async function getCompanies() {
         const companies = await CompaniesModel.findAll({
             include: {
                 model: VisitsModel,
-                as: 'visits'
+                as: 'visits',
+                include: [
+                    { model: UsersModel, as: 'user' }
+                ]
             }
         });
 
@@ -33,7 +36,10 @@ async function getCompanyById(id) {
         const company = await CompaniesModel.findByPk(id, {
             include: {
                 model: VisitsModel,
-                as: 'visits'
+                as: 'visits',
+                include: [
+                    { model: UsersModel, as: 'user' }
+                ]
             }
         });
 
