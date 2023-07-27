@@ -397,9 +397,7 @@ Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previ
     query {
       visits {
         id
-        date
-    
-    Visit
+        dateVisit
         user {
           id
           name
