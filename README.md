@@ -1,7 +1,7 @@
 
-# RETO NUB 7/8
+# Descripción
 
-Prueba técnica desarrollada con Node.js, Javascript, express, graphql, apollo, sequelize y postgresql para base de datos.
+Dsarrollada con Node.js, Javascript, express, graphql, apollo, sequelize y postgresql para base de datos.
 Tiene una arquitectura similar a MVC, se debe tener instalado PostgreSQL y previamente creada la base de datos, el proyecto se ejecuta sobre el puerto `localhost:4000/graphql`
 
 ### Estructura
